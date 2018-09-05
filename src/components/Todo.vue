@@ -3,7 +3,7 @@
         <input type="text" v-model="newTodo">
         <button @click="addTodo">add</button>
         <ul>
-          <li v-for="(todo, index) in todos" :key="index" @click="removeTodo">
+          <li v-for="(todo, index) in todos" :key="index" @click="removeTodo(index)">
             {{ todo.title }}
           </li>
         </ul>
@@ -30,8 +30,8 @@ export default {
       });
       this.newTodo = "";
     },
-    removeTodo(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1);
+    removeTodo(index) {
+      this.todos.splice(index, 1);
     }
   }
 };
