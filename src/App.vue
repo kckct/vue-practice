@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Todo />
+    <Dropdown />
   </div>
 </template>
 
 <script>
-import Todo from "@/components/Todo";
+import Dropdown from "@/components/Dropdown";
 
 export default {
   name: "app",
   components: {
-    Todo
+    Dropdown
   }
 };
 </script>
