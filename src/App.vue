@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MyDropdown :options="cities" @selected-change="changeCity"></MyDropdown>
-    <MyDropdown :options="areas" @selected-change="changeArea"></MyDropdown>
+    <MyDropdown :options="cities" v-model="cityIndex"></MyDropdown>
+    <MyDropdown :options="areas" v-model="areaIndex"></MyDropdown>
     <span>{{ zip }}</span>
   </div>
 </template>
@@ -54,25 +54,25 @@ export default {
 
   data() {
     return {
-      zip: "200",
-      cities: cities,
-      areas: cities[0].areas
+      cities,
+      cityIndex: 0,
+      areaIndex: 0
     };
   },
 
-  methods: {
-    changeCity(newCity) {
-      this.areas = this.cities.find(function(city) {
-        return newCity === city.name;
-      }).areas;
-
-      this.zip = this.areas[0].zip;
+  computed: {
+    areas() {
+      return cities[this.cityIndex].areas;
     },
 
-    changeArea(newArea) {
-      this.zip = this.areas.find(function(area) {
-        return newArea === area.name;
-      }).zip;
+    zip() {
+      return this.areas[this.areaIndex].zip;
+    }
+  },
+
+  watch: {
+    cityIndex() {
+      this.areaIndex = 0;
     }
   }
 };
